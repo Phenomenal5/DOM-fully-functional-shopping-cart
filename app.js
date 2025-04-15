@@ -1,3 +1,4 @@
+// load HTML DOM before running JS
 document.addEventListener("DOMContentLoaded", () =>{
     const prices = document.getElementsByClassName('unit-price');
     const quantities = document.querySelectorAll('.quantity');
@@ -8,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     const totalCost = document.querySelector('.total');
 
 
-// calculate total price
+    // calculate total price
     function updateTotal(){
         let totalPrice = 0;
+        // loop through each card to calculate total price
         document.querySelectorAll(".card").forEach((item, index) => {
             const price = Number(prices[index].textContent.replace('$', ''));
             const quantity = Number(quantities[index].textContent);
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             updateTotal();
         })
     })
-
+    // decrease quantity
     minus.forEach((minus_icon, index) => {
         minus_icon.addEventListener('click', () => {
             let quantity = Number(quantities[index].textContent);
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             updateTotal();
         });
     });
-
+    // clear item
     clearItem.forEach((add_icon, index) => {
         add_icon.addEventListener('click', () =>{
             const price = Number(prices[index].textContent.replace('$', ''));
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         });
     })
 
+    // heart icon click event
     heart.forEach(icon => {
         icon.addEventListener('click' , event =>{
             event.target.style.color = event.target.style.color === 'black' ? 'red' : 'black' ;
